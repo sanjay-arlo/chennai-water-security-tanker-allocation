@@ -1,120 +1,128 @@
 # Chennai Water Security & Tanker Allocation
 
-> Business Analyst / Data Analyst portfolio case study for prioritising tanker supply, conservation and recharge investments across Chennai supply zones under water-stress conditions.
+> **Business Analyst / Data Analyst portfolio case study** for prioritising tanker supply, conservation and recharge interventions across Chennai supply zones under water-stress conditions.
 
 ## 🚀 Live Dashboard
 
 **[Open the interactive dashboard](https://sanjay-arlo.github.io/chennai-water-security-tanker-allocation/)**
 
-The dashboard is a client-side portfolio demonstration. It reads the checked-in CSV, calculates KPIs in the browser and supports zone filtering.
+The live site is a client-side portfolio dashboard that reads the checked-in illustrative dataset, applies KPI logic in the browser and supports interactive filtering.
 
-## Business question
+## Executive summary
 
-Where is water-security stress highest, and how should scarce tanker supply, conservation effort and recharge investment be prioritised?
+This case converts a water-supply problem into an analyst-led decision workflow: clean and reconcile zone-level data, quantify supply stress, rank intervention priorities, visualise the operating picture, and translate the findings into an action queue.
 
-## What the dashboard shows
+## Business problem
 
-- Average storage percentage by Chennai zone
-- Daily demand and tanker-supply exposure
-- Rainfall-deficit signal
-- Storage trend across the portfolio period
-- Top priority zones based on lower average storage
+**Which Chennai supply zones need the earliest intervention, and how should scarce tanker capacity be prioritised?**
 
-## 2026 reference snapshot
+### Key decisions supported
 
-The repository keeps current external context separate from the synthetic portfolio dataset. The reference snapshot recorded on **11 September 2026** is **5,171 / 11,757 Mcft = 43.98%** Chennai drinking-water reservoir system storage, sourced from **TN-SMART / RIMES**.
+- Which zones show the greatest storage stress?
+- Where is tanker dependency highest?
+- How does rainfall deficit interact with supply pressure?
+- Which zones should receive first-line intervention?
+- What additional data would be required before operational deployment?
 
-This figure is a contextual reference point only. It is not presented as the value of the synthetic dashboard dataset.
+## Analyst workflow
 
-## Dataset
+**Excel → Python / Pandas / NumPy (optional) → SQL / MySQL → Power BI → Decision**
 
-`sample_reservoir_zone_data_chennai.csv` contains a synthetic portfolio dataset covering five Chennai supply zones across October 2025 to September 2026.
+### 1. Excel — first-pass business control
 
-**Important:** these records are synthetic and are designed for Business Analyst portfolio demonstration, KPI design, dashboarding and decision-support practice. They are not operational telemetry.
+Data cleaning, reconciliation, formulas, pivots, KPI checks, exception analysis and scenario planning. Excel is the first layer for validating the business logic before database analysis.
 
-## Analysis questions
+### 2. Python — optional analytical layer
 
-1. Which zones show the lowest average storage?
-2. Where is tanker dependency increasing?
-3. How does rainfall deficit relate to supply stress?
-4. Which operating units should receive first-line intervention?
-5. What data controls would be required before production use?
+Use **Pandas + NumPy** when repeatable profiling, exploratory analysis, transformations, anomaly checks or sensitivity testing adds value. Python is intentionally optional rather than forced into the baseline workflow.
 
-## Project files
+### 3. SQL / MySQL — mandatory analytical layer
 
-```text
-.
-├── index.html
-├── style.css
-├── app.js
-├── sample_reservoir_zone_data_chennai.csv
-├── data/
-│   └── source_snapshot.csv
-├── sql/
-│   └── analysis.sql
-├── excel/
-│   └── Excel_Analysis_Guide.md
-├── powerbi/
-│   └── PowerBI_Model_and_DAX_Guide.md
-├── BUSINESS_CASE.md
-├── BUSINESS_REQUIREMENTS.md
-├── STAKEHOLDER_MAP.md
-├── docs.md
-├── analysis.ipynb
-└── scripts/
-    └── validate_data.py
-```
+Use joins, CTEs, aggregations, window functions, trend calculations, ranking, segmentation and exception queues to create reproducible analytical outputs.
 
-## Business Analyst framework
+### 4. Power BI — mandatory executive layer
 
-### Stakeholders
+Design a dimensional/star-style model, define governed DAX measures, add slicers and drill-through, and structure the executive story around risk, priority, trend and allocation scenarios.
 
-- Chennai drinking-water operations teams
-- Municipal / regional planning stakeholders
-- Tanker-dispatch and field teams
-- Water-resource / reservoir monitoring teams
-- Finance and programme managers
+### 5. Decision — mandatory outcome
 
-### Core decision
-
-Move from a citywide headline number to a zone-level prioritisation model that combines exposure, supply dependency and early-warning signals.
-
-### Recommended operating logic
-
-**Priority = high exposure + low storage + high tanker dependency + persistent stress**
-
-Thresholds should be agreed with domain owners before operational deployment.
+Convert analysis into a management action queue with **priority, owner, intervention, expected impact, assumptions and escalation trigger**.
 
 ## Technical stack
 
-HTML • CSS • JavaScript • Chart.js • CSV • Python/Pandas • SQL • Excel • Power BI
+- **Excel** — business calculations, reconciliation, pivots and scenario planning
+- **SQL / MySQL** — governed KPI calculations, segmentation, ranking and exception analysis
+- **Python / Pandas / NumPy** — optional data preparation, EDA, analytical checks and repeatable transformations
+- **HTML / CSS / JavaScript** — interactive live dashboard interface
+- **Chart.js** — browser-based visualisation and KPI charting
+- **GitHub Pages** — live dashboard hosting
+- **Power BI** — compatible dashboard design direction, data-model thinking and DAX specification
+- **GitHub** — version control, documentation and portfolio delivery
 
-## KPI logic
+## Dashboard story
 
-**Average storage %** = mean of `storage_pct` for the selected scope.
+1. **Risk Overview** — current stress signals and headline KPIs
+2. **Zone Priorities** — ranked operating units requiring attention
+3. **Stress Trend** — storage, demand and tanker-supply movement over time
+4. **Allocation Scenario** — illustrative management levers and intervention assumptions
+5. **Decision Table** — filtered priority queue for action planning
+6. **Data Quality & Governance** — source integrity, grain and portfolio limitations
 
-**Average demand** = mean of `daily_demand_mld` for the selected scope.
+## KPI framework
 
-**Average tanker supply** = mean of `tanker_supply_mld` for the selected scope.
+- **Average storage %** = mean `storage_pct` for the selected scope
+- **Average demand** = mean `daily_demand_mld`
+- **Average tanker supply** = mean `tanker_supply_mld`
+- **Average rainfall deficit %** = mean `rainfall_deficit_pct`
+- **Operational priority** = low storage + high tanker dependency + persistent stress + exposure
 
-**Average rainfall deficit %** = mean of `rainfall_deficit_pct` for the selected scope.
+## Data quality & governance
 
-## Data quality controls
+- Required-column and blank-field validation
+- Date and key completeness checks
+- Duplicate review
+- KPI reconciliation between source, SQL and dashboard layers
+- Explicit separation between synthetic portfolio data and external context
+- Scenario assumptions labelled as illustrative
 
-- Required-column validation
-- Non-empty dataset check
-- Date completeness check
-- Duplicate / key review
-- Dashboard-to-source reconciliation
-- Separate labelling of synthetic and external reference data
+## Business Analyst deliverables
+
+- Business case and problem framing
+- Stakeholder-oriented requirements
+- KPI dictionary and calculation logic
+- Excel analysis workflow
+- SQL analysis queries
+- Optional Python analytical layer
+- Power BI data-model and DAX specification
+- Interactive executive dashboard
+- Decision and intervention framework
+- Production upgrade plan
+
+## Repository structure
+
+```text
+.
+├── dashboard/                  # reusable dashboard calculation engine
+├── docs/                       # GitHub Pages dashboard assets and checked-in data
+├── excel/                      # Excel implementation guidance
+├── sql/                        # MySQL analysis queries
+├── data/                       # source/context and methodology artifacts
+├── scripts/                    # validation / data-quality utilities
+├── BUSINESS_CASE.md
+├── BUSINESS_REQUIREMENTS.md
+├── STAKEHOLDER_MAP.md
+├── BA_DA_PIPELINE.md
+├── INDUSTRY_BA_DELIVERY_PACK.md
+└── analysis.ipynb              # optional Python analysis
+```
 
 ## Production upgrade path
 
-A production version should replace the synthetic layer with governed reservoir telemetry, verified tanker trips, demand forecasts, rainfall observations, groundwater indicators and a documented master geography. It should also introduce refresh SLAs, data-quality monitoring, role-based access and approved intervention thresholds.
+A production implementation would replace illustrative records with governed reservoir telemetry, verified tanker trips, demand forecasts, rainfall observations, groundwater indicators and an approved master geography. It would also require refresh SLAs, lineage, data-quality monitoring, role-based access and domain-approved intervention thresholds.
 
-## Limitation
+## Important limitation
 
-This is a **portfolio case study**, not an operational control system. Decisions should not be made from the synthetic dataset.
+This repository is a **portfolio case study using synthetic / illustrative data**. It is not operational Chennai water telemetry and should not be used to make real-world allocation decisions.
 
 ## Author
 
