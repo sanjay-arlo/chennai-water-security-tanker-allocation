@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chennai Water Security and Tanker Allocation business analytics dashboard">
+  <title>Chennai Water Security & Tanker Allocation</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">BUSINESS ANALYST • DATA ANALYST</div>
+        <h1>Chennai Water Security & Tanker Allocation</h1>
+        <p class="subtitle">Decision-support dashboard for identifying zone-level water stress and prioritising supply and conservation interventions.</p>
+      </div>
+      <a class="source" href="https://beta-tnsmart.rimes.int/index.php/Reservoir" target="_blank" rel="noopener noreferrer">2026 reference ↗</a>
+    </header>
+
+    <section class="reference">
+      <strong>2026 external reference:</strong> Chennai drinking-water reservoir system storage recorded in this portfolio snapshot at 5,171 / 11,757 Mcft = 43.98%.
+      <span>Source: TN-SMART / RIMES. External context only; not the synthetic dashboard dataset.</span>
+    </section>
+
+    <section class="controls card">
+      <label for="filter">Supply zone
+        <select id="filter"><option value="">All zones</option></select>
+      </label>
+      <button id="reset" type="button">Reset</button>
+      <span id="status" class="status">Loading data…</span>
+    </section>
+
+    <section class="kpis">
+      <article class="kpi card"><span>Avg. storage</span><strong id="k0">—</strong></article>
+      <article class="kpi card"><span>Avg. daily demand</span><strong id="k1">—</strong></article>
+      <article class="kpi card"><span>Avg. tanker supply</span><strong id="k2">—</strong></article>
+      <article class="kpi card"><span>Avg. rainfall deficit</span><strong id="k3">—</strong></article>
+    </section>
+
+    <section class="grid">
+      <article class="card panel">
+        <div class="panel-head"><h2>Storage by zone</h2><span class="hint">Lower = higher priority</span></div>
+        <div class="chart-wrap"><canvas id="storageChart"></canvas></div>
+      </article>
+      <article class="card panel">
+        <div class="panel-head"><h2>Storage trend</h2><span class="hint">Portfolio period</span></div>
+        <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+      </article>
+    </section>
+
+    <section class="card panel">
+      <div class="panel-head"><h2>Decision support</h2><span class="hint">Action-oriented output</span></div>
+      <div id="recs" class="recommendations"></div>
+    </section>
+
+    <footer>Synthetic portfolio case study • Sanjay Arlo • 2026 external reference snapshot only.</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
