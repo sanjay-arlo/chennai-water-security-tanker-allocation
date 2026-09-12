@@ -1,19 +1,22 @@
 # BA / DA Delivery Pipeline
 
 ## Business question
-Which Chennai supply zones need the earliest water-security intervention, and how should tanker capacity be prioritised?
+Which Chennai supply zones need the earliest water-security intervention, and how should scarce tanker capacity be prioritised?
 
-## 01 — Excel
-Profile and reconcile the raw zone-day data. Create cleaned fields for tanker dependency and stress status. Review outliers, missing values and trend patterns. The Excel workbook is the analyst's first-pass control layer.
+## 01 — Excel — mandatory first pass
+Profile and reconcile zone-day data; clean dates and numeric fields; create tanker-dependency and stress flags; use formulas, pivots and exception analysis to identify weak zones and data-quality issues.
 
-## 02 — SQL
-Build governed KPI queries for storage, demand, tanker dependency, rainfall stress, zone ranking and exception identification. SQL is the reproducible calculation layer.
+## 02 — Python (Pandas + NumPy) — optional
+Use Python when scale, repeatability or deeper EDA adds value: automate profiling, test storage/demand relationships, detect unusual stress observations and produce reproducible transformation steps. Do not force Python into the baseline workflow.
 
-## 03 — Power BI
-Create a star-style analytical model, governed measures, slicers, drill-through pages and an executive story: Risk Overview → Zone Priorities → Stress Trend → Allocation Scenario.
+## 03 — SQL — mandatory analytical layer
+Use joins, CTEs, aggregations and window functions to build governed KPIs, zone rankings, rolling/trend metrics and exception queues. SQL is the reproducible calculation layer.
 
-## 04 — Decision
-Translate the analysis into an intervention queue: exposure, urgency, recommended action, owner and expected outcome.
+## 04 — Power BI — mandatory decision interface
+Build a dimensional/star-style model, DAX measures, slicers, drill-through and executive storytelling: Risk Overview → Zone Priorities → Stress Trend → Tanker Allocation Scenario.
+
+## 05 — Decision — mandatory outcome
+Translate findings into a management action queue with priority, owner, intervention, expected impact, assumptions and escalation trigger.
 
 ## Acceptance criteria
-KPI totals reconcile to the cleaned dataset; filters return consistent results; scenarios are labelled illustrative; synthetic data is never presented as operational telemetry.
+KPI totals reconcile across Excel, SQL and Power BI; scenario assumptions are explicit; synthetic data is clearly labelled; decision rules are traceable to defined measures.
